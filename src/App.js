@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import React, { createContext, useState } from 'react';
 import './App.css';
+import Login from './components/Login';
+import User from './components/User';
 
-function App() {
+export const AuthContext = createContext(null);
+
+const App = () => {
+  const [username, setUsername] = useState('');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AuthContext.Provider value={{ username, setUsername }}>
+        <Login />
+        <User />
+      </AuthContext.Provider>
     </div>
   );
-}
+};
 
 export default App;
